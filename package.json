@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "js-app",
+  "version": "1.0.0",
+  "description": "A javascript app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nhost/nhost-js": "^1.4.9",
+    "graphql": "^16.6.0"
+  }
+}
