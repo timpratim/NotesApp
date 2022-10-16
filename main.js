@@ -26,10 +26,31 @@ console.log(userId)
 
 
 const mutation = await nhost.graphql.request(`mutation {
-  insert_note(objects: [{title: "My second Note"}]){
+  insert_note(objects: [{title: "My third Note"}]){
     affected_rows
   }
 }
 `,{},{headers: {'X-Hasura-Role': 'user','X-Hasura-User-Id':userId}})
 
-console.log(mutation.error)
+const query = await nhost.graphql.request(`query {
+  note {
+    id
+    title
+    created_at
+  }
+}
+`,{},{headers: {'X-Hasura-Role': 'user','X-Hasura-User-Id':userId}})
+
+const id = 1
+
+const deletequery = await nhost.graphql.request(`mutation delete_an_object {
+  delete_note_by_pk(id: ${id}) {
+    title
+  }
+}
+`,{},{headers: {'X-Hasura-Role': 'user','X-Hasura-User-Id':userId}})
+
+
+
+console.log(query.data)
+console.log(deletequery.data)
